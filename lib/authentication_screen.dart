@@ -13,7 +13,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  
+
   bool _isLogin = true;
   bool _isLoading = false;
   String _errorMessage = '';
@@ -25,7 +25,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
     super.dispose();
   }
 
-  Future<void _submitForm() async {
+  Future<void> _submitForm() async {
     if (!_formKey.currentState!.validate()) return;
 
     setState(() {
@@ -39,7 +39,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
       } else {
         await _auth.register(_emailController.text, _passwordController.text);
       }
-      
+
       if (mounted) {
         Navigator.pushReplacementNamed(context, '/profile');
       }
@@ -135,9 +135,11 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                     _errorMessage = '';
                   });
                 },
-                child: Text(_isLogin
-                    ? 'Need an account? Register'
-                    : 'Already have an account? Sign In'),
+                child: Text(
+                  _isLogin
+                      ? 'Need an account? Register'
+                      : 'Already have an account? Sign In',
+                ),
               ),
             ],
           ),
